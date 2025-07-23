@@ -35,11 +35,10 @@ public class Graph extends JPanel{
 
         g.setColor(new Color(126, 126, 126));
         for(int i = 1; i < width / 2 / scale; i++){
-            TextArea text = new TextArea();
-            g.drawLine((int) (width / 2 + scale*i), 0, (int) (width / 2 + scale*i), height);
-            g.drawLine((int) (width / 2 - scale*i), 0, (int) (width / 2 - scale*i), height);
-            g.drawLine(0, (int) (height / 2 + scale*i), width, (int) (height / 2 + scale*i));
-            g.drawLine(0, (int) (height / 2 - scale*i), width, (int) (height / 2 - scale*i));
+            g.drawLine((int) (width / 2 + scale * i), 0, (int) (width / 2 + scale * i), height);
+            g.drawLine((int) (width / 2 - scale * i), 0, (int) (width / 2 - scale * i), height);
+            g.drawLine(0, (int) (height / 2 + scale * i), width, (int) (height / 2 + scale * i));
+            g.drawLine(0, (int) (height / 2 - scale * i), width, (int) (height / 2 - scale * i));
         }
 
         g.setColor(Color.black);
@@ -53,9 +52,9 @@ public class Graph extends JPanel{
                 x = (i - width / 2 - 1) / scale;
                 y = (height / 2 - j - 1) / scale;
 
-                double expression = RPN.result(str, x);
+                double result = RPN.result(str, x);
 
-                if (isCorrect(y, expression, 0.02)) {
+                if (isCorrect(y, result, 0.02)) {
                     g.fillOval(i, j, 2, 2);
                 }
             }
@@ -64,8 +63,8 @@ public class Graph extends JPanel{
         done = true;
     }
 
-    boolean isCorrect(double num1, double num2, double error) {
-        if (Math.abs(num1 - num2) <= error)
+    boolean isCorrect(double x, double result, double error) {
+        if (Math.abs(x - result) <= error)
             return true;
         return false;
     }
